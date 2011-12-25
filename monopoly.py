@@ -1,7 +1,6 @@
 import random
 
 class Player(object):
-    global names
     def __init__(self):
         self.pos = 0
         self.in_jail = False
