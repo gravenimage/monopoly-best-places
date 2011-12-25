@@ -139,8 +139,9 @@ def sim(max_rolls):
     player = Player()
     for i in range(max_rolls):
         do_turn(player)
-        
-for i in range(20):
+
+# run 200 realiations of 1000 throws each
+for i in range(200):
     sim(1000)
     
 summary_hits = [(place, hits[place]) for place in sorted(hits, key=hits.get)]
