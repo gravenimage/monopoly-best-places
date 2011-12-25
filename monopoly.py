@@ -67,6 +67,7 @@ def go_to_jail(player):
 
 def take_chance(player):
     card = random.randint(0, 15) # there are 16 chance cards
+    # only consider those cards which change the position
     if card == 0:
         player.pos = names.index('GO')
     if card == 1:
@@ -78,12 +79,13 @@ def take_chance(player):
     if card == 4:
         player.pos = names.index('Pall Mall')
     if card == 5:
-        player.pos = (player.pos - 3) % len(names) # TODO consider what we land on
+        player.pos = (player.pos - 3) % len(names) 
     if card == 6:
         player.pos = names.index('Trafalgar Square')
 
 def take_community_chest(player):
-    card = random.randint(0, 15)
+    card = random.randint(0, 15) # there are 16 community chest cards
+    # only consider those cards which change the position
     if card == 0:
         go_to_jail(player)
     if card == 1:
