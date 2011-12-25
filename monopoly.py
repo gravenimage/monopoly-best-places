@@ -1,5 +1,14 @@
 import random
 
+class Player(object):
+    global names
+    def __init__(self):
+        self.pos = 0
+        self.in_jail = False
+        
+    def place(self):
+        return names[self.pos]
+
 # all positions are ordered from GO = 0
 names = [
             'GO',
@@ -42,22 +51,10 @@ names = [
             'Mayfair'
             ]
 
-class Player(object):
-    global names
-    def __init__(self):
-        self.pos = 0
-        self.in_jail = False
-        
-    def place(self):
-        return names[self.pos]
-
+# initialize hits-per-places dict
 hits = {}
 for k in names:
     hits[k] = 0
-
-def print_board():
-    for name in names:
-            print "%s\t\t%s" % (name, hits[name])
 
 def dice_roll():
     dice1 = random.randint(1, 6)
@@ -140,14 +137,15 @@ def sim(max_rolls):
     for i in range(max_rolls):
         do_turn(player)
 
-# run 200 realiations of 1000 throws each
-for i in range(200):
-    sim(1000)
-    
-summary_hits = [(place, hits[place]) for place in sorted(hits, key=hits.get)]
+if __name__ == "__main__":
+    # run 200 realiations of 1000 throws each
+    for i in range(200):
+        sim(1000)
 
-for place, count in summary_hits:
-    print place, count
+    # print hits per place in order, least to most
+    summary_hits = [(place, hits[place]) for place in sorted(hits, key=hits.get)]
+    for place, count in summary_hits:
+        print place, count
          
 
     
